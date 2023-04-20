@@ -12,7 +12,7 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="min-h-screen bg-b">
-        <div className="isolate flex h-screen justify-center">
+        <section className="isolate flex h-screen justify-center" id="banner">
           <img
             src="/images/banner_circle.svg"
             alt=""
@@ -20,35 +20,53 @@ const Home: NextPage = () => {
           />
           <div className="mx-auto">
             <nav className="flex items-center justify-center gap-16 py-16 font-pop font-semibold text-e">
-              <div>Home</div>
-              <div>Problem</div>
-              <div>Product</div>
+              <div>
+                <a href="#banner">Home</a>
+              </div>
+              <div>
+                <a href="#problems">Problem</a>
+              </div>
+              <div>
+                <a href="#product">Product</a>
+              </div>
               <img src="/images/Logo.png" alt="logo" />
-              <div>Advantages</div>
-              <div>Team</div>
-              <div>Contact</div>
+              <div>
+                <a href="#advantages">Advantages</a>
+              </div>
+              <div>
+                <a href="#team">Team</a>
+              </div>
+              <div>
+                <a href="#contact">Contact</a>
+              </div>
             </nav>
-            <div className="mt-20 space-y-6">
-              <h1
-                className={`${loubagFontClassname} text-center text-9xl font-bold text-e`}
-              >
-                ZenChat
-              </h1>
+            <div className="relative mt-20 space-y-10">
+              <div className="relative">
+                <img
+                  src="/images/shape_1.png"
+                  alt="shape"
+                  className="absolute left-1/2 top-1/2 -z-10 h-[200px] -translate-x-1/2 -translate-y-1/2"
+                />
+                <h1
+                  className={`${loubagFontClassname} text-center text-9xl font-bold text-e`}
+                >
+                  ZenChat
+                </h1>
+              </div>
               <p className="text-center font-pop text-lg text-e">
                 Your go-to mental health support, available anytime, anywhere.
               </p>
             </div>
           </div>
-        </div>
-
-        <div className="isolate flex justify-center">
-          <img
-            src="/images/weird_shape.svg"
+        </section>
+        <section className="relative isolate" id="problems">
+          {/* <img
+            src="/images/shape.svg"
             alt=""
-            className="absolute left-1/2 -z-10 w-full -translate-x-1/2"
-          />
-          <div className="mx-auto w-full">
-            <div className="mt-72 space-y-6">
+            className="relative z-10 w-full"
+          /> */}
+          <div className="relative w-full bg-c py-36 shadow-inner">
+            <div className="space-y-6">
               <h1
                 className={`${loubagFontClassname} text-center text-8xl font-bold text-b`}
               >
@@ -58,7 +76,7 @@ const Home: NextPage = () => {
                 Your go-to mental health support, available anytime, anywhere.{" "}
               </p>
             </div>
-            <div className="mx-auto flex w-1/2 justify-between py-16">
+            <div className="mx-auto flex w-1/2 justify-between pt-16">
               <div>
                 <img src="/images/p1.png" alt="" />
                 <p className="text-center font-pop text-xl text-a">
@@ -79,8 +97,8 @@ const Home: NextPage = () => {
               </div>
             </div>
           </div>
-        </div>
-        <div className="isolate flex justify-center">
+        </section>
+        <section className="isolate flex justify-center" id="product">
           {/* <img
             src="/images/weird_shape.svg"
             alt=""
@@ -150,15 +168,15 @@ const Home: NextPage = () => {
               </div>
             </div>
           </div>
-        </div>
-        <div className="isolate flex justify-center">
-          <img
+        </section>
+        <section className="isolate flex justify-center" id="advantages">
+          {/* <img
             src="/images/weird_shape_2.svg"
             alt=""
             className="absolute left-1/2 -z-10 w-full -translate-x-1/2"
-          />
-          <div className="mx-auto w-full">
-            <div className="mt-80 space-y-6">
+          /> */}
+          <div className="mx-auto w-full bg-c py-40 shadow-inner">
+            <div className=" space-y-6">
               <h1
                 className={`${loubagFontClassname} text-center text-8xl font-bold text-b`}
               >
@@ -168,7 +186,7 @@ const Home: NextPage = () => {
                 Your go-to mental health support, available anytime, anywhere.{" "}
               </p>
             </div>
-            <div className="mx-auto flex w-2/3 flex-wrap justify-center py-24">
+            <div className="mx-auto flex w-2/3 flex-wrap justify-center pt-24">
               <div className="w-1/2 space-y-2 p-10">
                 <h3
                   className={`${loubagFontClassname} text-center text-3xl font-bold text-a`}
@@ -211,8 +229,8 @@ const Home: NextPage = () => {
               </div>
             </div>
           </div>
-        </div>
-        <div className="isolate flex justify-center">
+        </section>
+        <section className="isolate flex justify-center" id="team">
           {/* <img
             src="/images/weird_shape.svg"
             alt=""
@@ -300,15 +318,10 @@ const Home: NextPage = () => {
               </div>
             </div>
           </div>
-        </div>
-        <div className="isolate flex justify-center">
-          <img
-            src="/images/weird_shape.svg"
-            alt=""
-            className="absolute left-1/2 -z-10 w-full -translate-x-1/2"
-          />
-          <div className="mx-auto w-full">
-            <div className="mt-72 space-y-6">
+        </section>
+        <section className="isolate flex justify-center" id="contact">
+          <div className="mx-auto w-full bg-c pb-16 pt-40 shadow-inner">
+            <div className="space-y-6">
               <h1
                 className={`${loubagFontClassname} text-center text-8xl font-bold text-b`}
               >
@@ -318,34 +331,54 @@ const Home: NextPage = () => {
                 Your go-to mental health support, available anytime, anywhere.{" "}
               </p>
             </div>
-            <div className="mx-auto flex w-1/2 flex-wrap justify-between py-16">
+            <form
+              action="https://formspree.io/f/xdovyezg"
+              method="POST"
+              className="mx-auto flex w-1/2 flex-wrap justify-between pt-16"
+            >
               <div className="w-1/2 px-5">
                 <h3
                   className={`${loubagFontClassname} text-3xl font-bold text-b`}
                 >
                   Name
                 </h3>
-                <input type="text" className="w-full bg-d" />
+                <input
+                  type="text"
+                  className="mt-3 w-full rounded-sm bg-d p-2 text-3xl font-black text-e/60"
+                  name="name"
+                />
               </div>
               <div className="w-1/2 px-5">
                 <h3
                   className={`${loubagFontClassname} text-3xl font-bold text-b`}
                 >
-                  Name
+                  Contact
                 </h3>
-                <input type="text" className="w-full bg-d" />
+                <input
+                  type="number"
+                  className="mt-3 w-full rounded-sm bg-d p-2 text-3xl font-black text-e/60"
+                  name="contact"
+                />
               </div>
-              <div className="mt-10 w-full px-5">
+              <div className="mt-7 w-full px-5">
                 <h3
                   className={`${loubagFontClassname} text-3xl font-bold text-b`}
                 >
-                  Name
+                  Message
                 </h3>
-                <textarea className="w-full bg-d" cols={24} />
+                <textarea
+                  className="mt-3 h-40 w-full rounded-sm bg-d p-2 text-3xl font-black text-e/60"
+                  cols={100}
+                  rows={10}
+                  name="message"
+                />
+                <button className="mt-7 rounded-sm bg-a px-4 py-3 text-center text-xl font-black text-b">
+                  SUBMIT
+                </button>
               </div>
-            </div>
+            </form>
           </div>
-        </div>
+        </section>
       </main>
     </>
   );
