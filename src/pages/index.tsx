@@ -4,6 +4,12 @@ import Head from "next/head";
 import { loubagFontClassname } from "./_app";
 
 const Home: NextPage = () => {
+  const handleClick = async () => {
+    const response = await fetch("/api/complete");
+    const data = await response.json();
+    console.log(data);
+  };
+
   return (
     <>
       <Head>
@@ -18,6 +24,7 @@ const Home: NextPage = () => {
             alt=""
             className="absolute left-1/2 -z-10 -translate-x-1/2"
           />
+          <button onClick={handleClick}>click here</button>
           <div className="mx-auto">
             <nav className="flex items-center justify-center gap-16 py-16 font-pop font-semibold text-e">
               <div>
