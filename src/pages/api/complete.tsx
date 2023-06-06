@@ -11,14 +11,12 @@ const configuration = new Configuration({
 
 const openai = new OpenAIApi(configuration);
 
-const messageBody = z.object({
-  messages: z.array(
-    z.object({
-      role: z.string(),
-      content: z.string(),
-    })
-  ),
-});
+const messageBody = z.array(
+  z.object({
+    role: z.string(),
+    content: z.string(),
+  })
+);
 
 // create a next js api handler
 export default async function handler(
@@ -30,21 +28,21 @@ export default async function handler(
     res.status(405).json({ error: "Method not allowed, please use POST" });
     return;
   }
-  const body = messageBody.parse(req.body);
+  const messages = messageBody.parse(req.body);
   // check the body for a list of messages, if not found return an error
-  if (!body.messages) {
+  if (!messages) {
     res.status(400).json({ error: "Missing messages" });
     return;
   }
   // check the body for a list of messages, if not found return an error
-  if (!body.messages.length) {
+  if (!messages.length) {
     res.status(400).json({ error: "Empty messages" });
     return;
   }
   try {
     const data = await openai.createChatCompletion({
       model: "gpt-3.5-turbo",
-      messages: body.messages as ChatCompletionRequestMessage[],
+      messages: messages as ChatCompletionRequestMessage[],
       temperature: 0.9,
       n: 1,
     });
