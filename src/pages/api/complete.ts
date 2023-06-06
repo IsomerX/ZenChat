@@ -2,6 +2,7 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import { Configuration, OpenAIApi } from "openai";
 import { z } from "zod";
 import type { ChatCompletionRequestMessage } from "openai/dist/api";
+import prompt from "utils/prompt";
 
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY || "";
 
@@ -42,11 +43,13 @@ export default async function handler(
   try {
     const data = await openai.createChatCompletion({
       model: "gpt-3.5-turbo",
-      messages: messages as ChatCompletionRequestMessage[],
+      messages: [
+        { role: "system", content: prompt },
+        ...messages,
+      ] as ChatCompletionRequestMessage[],
       temperature: 0.9,
       n: 1,
     });
-    console.log(data.data.choices);
     res.send(data.data.choices[0]?.message);
   } catch (e) {
     console.error(e);
