@@ -4,7 +4,26 @@ import { z } from "zod";
 import type { ChatCompletionRequestMessage } from "openai/dist/api";
 import prompt from "utils/prompt";
 
-const OPENAI_API_KEY = process.env.OPENAI_API_KEY || "";
+// choose random key
+const randomKey = () => {
+  const keys = [
+    process.env.OPENAI_API_KEY_1 || " ",
+    process.env.OPENAI_API_KEY_2 || " ",
+    process.env.OPENAI_API_KEY_3 || " ",
+    process.env.OPENAI_API_KEY_4 || " ",
+    process.env.OPENAI_API_KEY_5 || " ",
+    process.env.OPENAI_API_KEY_6 || " ",
+    process.env.OPENAI_API_KEY_7 || " ",
+    process.env.OPENAI_API_KEY_8 || " ",
+  ];
+  return (
+    keys[Math.floor(Math.random() * keys.length)] ||
+    process.env.OPENAI_API_KEY_1 ||
+    " "
+  );
+};
+
+const OPENAI_API_KEY = randomKey();
 
 const configuration = new Configuration({
   apiKey: OPENAI_API_KEY,
@@ -30,12 +49,12 @@ export default async function handler(
     return;
   }
   const messages = messageBody.parse(req.body);
-  // check the body for a list of messages, if not found return an error
+
   if (!messages) {
     res.status(400).json({ error: "Missing messages" });
     return;
   }
-  // check the body for a list of messages, if not found return an error
+
   if (!messages.length) {
     res.status(400).json({ error: "Empty messages" });
     return;
