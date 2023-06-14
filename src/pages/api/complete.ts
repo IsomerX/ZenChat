@@ -8,13 +8,6 @@ import prompt from "utils/prompt";
 const randomKey = () => {
   const keys = [
     process.env.OPENAI_API_KEY_1 || " ",
-    process.env.OPENAI_API_KEY_2 || " ",
-    process.env.OPENAI_API_KEY_3 || " ",
-    process.env.OPENAI_API_KEY_4 || " ",
-    process.env.OPENAI_API_KEY_5 || " ",
-    process.env.OPENAI_API_KEY_6 || " ",
-    process.env.OPENAI_API_KEY_7 || " ",
-    process.env.OPENAI_API_KEY_8 || " ",
   ];
   return (
     keys[Math.floor(Math.random() * keys.length)] ||
