@@ -6,9 +6,7 @@ import prompt from "utils/prompt";
 
 // choose random key
 const randomKey = () => {
-  const keys = [
-    process.env.OPENAI_API_KEY_1 || " ",
-  ];
+  const keys = [process.env.OPENAI_API_KEY_1 || " "];
   return (
     keys[Math.floor(Math.random() * keys.length)] ||
     process.env.OPENAI_API_KEY_1 ||
@@ -31,6 +29,13 @@ const messageBody = z.array(
   })
 );
 
+type Persona = keyof typeof prompt;
+
+const requestBody = z.object({
+  messages: messageBody,
+  persona: z.string(),
+});
+
 // create a next js api handler
 export default async function handler(
   req: NextApiRequest,
@@ -41,7 +46,8 @@ export default async function handler(
     res.status(405).json({ error: "Method not allowed, please use POST" });
     return;
   }
-  const messages = messageBody.parse(req.body);
+  const { messages, persona } = requestBody.parse(req.body);
+  const systemMessage = prompt[persona as Persona];
 
   if (!messages) {
     res.status(400).json({ error: "Missing messages" });
@@ -56,7 +62,7 @@ export default async function handler(
     const data = await openai.createChatCompletion({
       model: "gpt-3.5-turbo",
       messages: [
-        { role: "system", content: prompt },
+        { role: "system", content: systemMessage },
         ...messages,
       ] as ChatCompletionRequestMessage[],
       temperature: 0.9,
